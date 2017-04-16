@@ -22,7 +22,7 @@ def palindrome_permutation(my_str):
 #palindrome if number of odd counts is 0 or 1
     str_dict = {}
 
-    for char in my_str:
+    for char in my_str.replace(' ', ''):
         if char in str_dict:
             str_dict[char] += 1
         else:
