@@ -53,4 +53,51 @@ def compress(my_str):
         return my_str
     return compressed
 
+def one_away(str1, str2):
+    a = len(str1)
+    b = len(str2)
+    if abs(a-b) > 1:
+        return False
+    i = 0
+    j = 0
+    edit_count = 0
+    while i < a and j < b:
+        if str1[i] != str2[j]:
+            if edit_count == 1:
+                return False
+            if a > b:
+                i+=1
+            elif a < b:
+                j += 1
+            else:
+                i+=1
+                j+=1
+            edit_count += 1
+        else:
+            i+=1
+            j+=1
+    if i < a or j < b:
+        edit_count += 1
+    if edit_count > 1:
+        return False
+    return True
 
+def zero_matrix(matrix):
+    if not matrix:
+        return []
+    rows = len(matrix)
+    cols = len(matrix[0])
+
+    clear_rows = [False] * rows
+    clear_cols = [False] * cols
+    
+    for i in range(rows):
+        for j in range(cols):
+            if matrix[i][j] == 0:
+                clear_rows[i] = True
+                clear_cols[j] = True
+    for i in range(rows):
+        for j in range(cols):
+            if clear_rows[i] or clear_cols[j] is True:
+                matrix[i][j] = 0
+    return matrix
